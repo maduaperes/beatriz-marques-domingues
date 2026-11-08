@@ -153,29 +153,90 @@
     items.forEach((el) => observer.observe(el));
   };
 
-  /* ---------- Hero: luz que acompanha o cursor ---------- */
+  /* ---------- Hero: luz que acompanha o cursor ou o dedo ---------- */
   const initSpotlight = () => {
     const hero = $("[data-hero]");
-    const finePointer = window.matchMedia(
-      "(hover: hover) and (pointer: fine)",
-    ).matches;
-    if (!hero || prefersReducedMotion || !finePointer) return;
+    if (!hero || prefersReducedMotion) return;
 
     let frame;
-    hero.addEventListener("pointermove", (event) => {
+    const moveLight = (x, y) => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         const rect = hero.getBoundingClientRect();
         hero.style.setProperty(
           "--mx",
-          `${((event.clientX - rect.left) / rect.width) * 100}%`,
+          `${((x - rect.left) / rect.width) * 100}%`,
         );
         hero.style.setProperty(
           "--my",
-          `${((event.clientY - rect.top) / rect.height) * 100}%`,
+          `${((y - rect.top) / rect.height) * 100}%`,
         );
       });
+    };
+
+    // Mouse e caneta
+    hero.addEventListener("pointermove", (event) => {
+      if (event.pointerType !== "touch")
+        moveLight(event.clientX, event.clientY);
     });
+
+    // Toque: a luz segue o dedo ao tocar e arrastar (sem bloquear a rolagem)
+    const onTouch = (event) => {
+      const touch = event.touches[0];
+      if (touch) moveLight(touch.clientX, touch.clientY);
+    };
+    hero.addEventListener("touchstart", onTouch, { passive: true });
+    hero.addEventListener("touchmove", onTouch, { passive: true });
+  };
+
+  /* ---------- Efeitos de hover também no toque ----------
+     No celular não existe "passar o mouse". Ao tocar num elemento, ele recebe
+     a classe .is-touched (mesmo visual do :hover) por alguns instantes. */
+  const initTouchHover = () => {
+    const selector = [
+      ".btn",
+      ".brand",
+      ".nav-cta",
+      ".hero-portrait",
+      ".ledger-row",
+      ".role",
+      ".skill-list li",
+      ".chips li",
+      ".email-link",
+      ".copy-btn",
+      ".contact-value[href]",
+      ".back-top",
+    ].join(",");
+    const HOLD = 1400;
+    const timers = new WeakMap();
+
+    document.addEventListener(
+      "pointerdown",
+      (event) => {
+        if (event.pointerType === "mouse") return;
+        const el = event.target.closest(selector);
+        if (!el) return;
+
+        el.classList.add("is-touched");
+        clearTimeout(timers.get(el));
+        timers.set(
+          el,
+          setTimeout(() => el.classList.remove("is-touched"), HOLD),
+        );
+      },
+      { passive: true },
+    );
+
+    // Faixa de competências: um toque pausa, outro toque retoma
+    const marquee = $(".marquee");
+    marquee?.addEventListener(
+      "pointerdown",
+      (event) => {
+        if (event.pointerType !== "mouse")
+          marquee.classList.toggle("is-touched");
+      },
+      { passive: true },
+    );
   };
 
   /* ---------- Toast ---------- */
@@ -245,6 +306,7 @@
     initActiveSection();
     initReveal();
     initSpotlight();
+    initTouchHover();
     initCopy();
     initYear();
   });

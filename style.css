@@ -211,6 +211,7 @@ button {
 }
 
 .btn:hover::before,
+.btn.is-touched::before,
 .btn:focus-visible::before {
   transform: scaleX(1);
   transform-origin: left;
@@ -222,10 +223,12 @@ button {
   flex: none;
   transition: transform 0.4s var(--ease-out);
 }
-.btn:hover .btn-icon {
+.btn:hover .btn-icon,
+.btn.is-touched .btn-icon {
   transform: translateX(3px);
 }
-.btn-primary:hover .btn-icon {
+.btn-primary:hover .btn-icon,
+.btn-primary.is-touched .btn-icon {
   transform: translate(2px, -2px);
 }
 
@@ -245,6 +248,7 @@ button {
   background: var(--navy-900);
 }
 .btn-ghost:hover,
+.btn-ghost.is-touched,
 .btn-ghost:focus-visible {
   color: var(--white);
 }
@@ -262,9 +266,12 @@ button {
     color 0.3s var(--ease);
 }
 .nav-link:hover,
+.nav-link.is-touched,
 .nav-link.is-active,
 .contact-value[href]:hover,
-.back-top:hover {
+.contact-value[href].is-touched,
+.back-top:hover,
+.back-top.is-touched {
   background-size: 100% 1px;
   background-position: 0 100%;
 }
@@ -342,7 +349,8 @@ button {
     color 0.35s var(--ease),
     border-color 0.35s var(--ease);
 }
-.brand:hover .brand-mark {
+.brand:hover .brand-mark,
+.brand.is-touched .brand-mark {
   background: var(--h-accent);
   color: var(--navy-900);
 }
@@ -372,6 +380,7 @@ button {
   padding-block: 0.25rem;
 }
 .nav-link:hover,
+.nav-link.is-touched,
 .nav-link.is-active {
   color: var(--h-fg);
 }
@@ -402,7 +411,8 @@ button {
 .nav-cta .nav-num {
   display: none;
 }
-.nav-cta:hover {
+.nav-cta:hover,
+.nav-cta.is-touched {
   background: var(--h-accent);
   color: var(--navy-900);
 }
@@ -608,6 +618,7 @@ button {
   background: var(--paper);
 }
 .hero .btn-ghost:hover,
+.hero .btn-ghost.is-touched,
 .hero .btn-ghost:focus-visible {
   color: var(--navy-900);
   border-color: var(--paper);
@@ -633,7 +644,8 @@ button {
   border-radius: 999px 999px 0 0;
   transition: inset 0.8s var(--ease-out);
 }
-.hero-portrait:hover .portrait-frame::before {
+.hero-portrait:hover .portrait-frame::before,
+.hero-portrait.is-touched .portrait-frame::before {
   inset: -8px -8px 8px 8px;
 }
 
@@ -726,7 +738,8 @@ button {
   width: max-content;
   animation: marquee 48s linear infinite;
 }
-.marquee:hover .marquee-track {
+.marquee:hover .marquee-track,
+.marquee.is-touched .marquee-track {
   animation-play-state: paused;
 }
 .marquee-group {
@@ -858,7 +871,8 @@ button {
   transform-origin: left;
   transition: transform 0.7s var(--ease-out);
 }
-.ledger-row:hover::after {
+.ledger-row:hover::after,
+.ledger-row.is-touched::after {
   transform: scaleX(1);
 }
 
@@ -875,7 +889,8 @@ button {
   color: var(--navy-900);
   transition: transform 0.5s var(--ease-out);
 }
-.ledger-row:hover .ledger-title {
+.ledger-row:hover .ledger-title,
+.ledger-row.is-touched .ledger-title {
   transform: translateX(6px);
 }
 .ledger-sub {
@@ -918,7 +933,8 @@ button {
   background: var(--gold);
   transition: width 0.8s var(--ease-out);
 }
-.role:hover::before {
+.role:hover::before,
+.role.is-touched::before {
   width: 100%;
 }
 
@@ -1039,7 +1055,8 @@ button {
     color 0.3s var(--ease),
     padding-left 0.45s var(--ease-out);
 }
-.skill-list li:hover {
+.skill-list li:hover,
+.skill-list li.is-touched {
   color: var(--navy-900);
   padding-left: 0.5rem;
 }
@@ -1080,7 +1097,8 @@ button {
     background-color 0.3s var(--ease),
     color 0.3s var(--ease);
 }
-.chips li:hover {
+.chips li:hover,
+.chips li.is-touched {
   border-color: var(--navy-900);
   background: var(--navy-900);
   color: var(--white);
@@ -1164,10 +1182,12 @@ button {
   transform-origin: right;
   transition: transform 0.6s var(--ease-out);
 }
-.email-link:hover {
+.email-link:hover,
+.email-link.is-touched {
   color: var(--champagne);
 }
-.email-link:hover::after {
+.email-link:hover::after,
+.email-link.is-touched::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -1192,7 +1212,8 @@ button {
   width: 14px;
   height: 14px;
 }
-.copy-btn:hover {
+.copy-btn:hover,
+.copy-btn.is-touched {
   border-color: var(--champagne);
   color: var(--champagne);
 }
@@ -1225,7 +1246,8 @@ button {
   font-weight: 500;
   color: var(--white);
 }
-.contact-value[href]:hover {
+.contact-value[href]:hover,
+.contact-value[href].is-touched {
   color: var(--champagne);
 }
 
@@ -1245,7 +1267,8 @@ button {
 .back-top {
   color: var(--muted-light);
 }
-.back-top:hover {
+.back-top:hover,
+.back-top.is-touched {
   color: var(--champagne);
 }
 
@@ -1507,6 +1530,7 @@ button {
     color: var(--paper);
   }
   .nav-link:hover,
+  .nav-link.is-touched,
   .nav-link.is-active {
     color: var(--champagne);
   }
@@ -1521,7 +1545,8 @@ button {
   .nav-cta {
     color: var(--champagne);
   }
-  .nav-cta:hover {
+  .nav-cta:hover,
+  .nav-cta.is-touched {
     color: var(--paper);
   }
   .nav-cta-item {
