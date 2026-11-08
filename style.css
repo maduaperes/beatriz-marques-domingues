@@ -1581,6 +1581,30 @@ button {
 }
 
 @media (max-width: 600px) {
+  .hero-portrait {
+    max-width: 230px;
+  }
+  .seal {
+    left: -30px;
+    bottom: 24px;
+    width: 84px;
+    height: 84px;
+  }
+  .seal-mark {
+    font-size: 1.7rem;
+  }
+  .eyebrow {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+  }
+  .hero-actions {
+    width: 100%;
+  }
+  .hero-actions .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
   .role,
   .bridge {
     grid-template-columns: 1fr;
@@ -1620,114 +1644,6 @@ button {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-/* ---------- Hero no celular: cabe inteiro na altura da tela ----------
-   Tamanhos e espaços acompanham a altura visível (svh), então o hero
-   se ajusta de telas pequenas (iPhone SE) às grandes sem cortar. */
-@media (max-width: 600px) {
-  .hero {
-    --ph: clamp(130px, 27svh, 320px); /* altura da foto */
-    --gap: clamp(0.5rem, 2svh, 1.5rem); /* respiro vertical */
-
-    min-height: 100vh;
-    min-height: 100svh;
-    padding-top: calc(var(--header-h) + var(--gap) * 0.5);
-  }
-
-  .hero-grid {
-    justify-content: center;
-    padding-bottom: var(--gap);
-  }
-
-  .eyebrow {
-    margin-bottom: var(--gap);
-    padding: 0.45rem 0.8rem;
-    font-size: 0.5625rem;
-    letter-spacing: 0.1em;
-    line-height: 1.4;
-  }
-
-  .hero-title {
-    font-size: clamp(1.9rem, min(11vw, 5.2svh), 3.4rem);
-    line-height: 0.98;
-  }
-
-  .hero-portrait {
-    width: calc(var(--ph) * 0.8);
-    max-width: none;
-    margin: calc(var(--gap) * 1.4) 0 var(--gap);
-  }
-  .portrait-frame::before {
-    inset: -10px -10px 10px 10px;
-  }
-
-  .seal {
-    left: calc(var(--ph) * -0.12);
-    bottom: calc(var(--ph) * 0.08);
-    width: calc(var(--ph) * 0.3);
-    height: calc(var(--ph) * 0.3);
-  }
-  .seal-ring {
-    inset: 4px;
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-  }
-  .seal-mark {
-    font-size: calc(var(--ph) * 0.085);
-  }
-
-  .hero-role {
-    margin-top: 0;
-    font-size: 0.8125rem;
-  }
-  .hero-lead {
-    margin-top: calc(var(--gap) * 0.6);
-    font-size: 0.875rem;
-    line-height: 1.55;
-  }
-
-  /* Botões lado a lado para economizar altura */
-  .hero-actions {
-    width: 100%;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    margin-top: calc(var(--gap) * 1.2) !important;
-  }
-  .hero-actions .btn {
-    flex: 1 1 0;
-    justify-content: center;
-    gap: 0.45rem;
-    padding: 0.85rem 0.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  .marquee-group li {
-    padding: calc(var(--gap) * 0.8) 0;
-    font-size: 1.05rem;
-  }
-  .marquee-group li::after {
-    margin-inline: 1.25rem;
-  }
-}
-
-/* Telas muito baixas: o texto de apoio sai para o essencial caber */
-@media (max-width: 600px) and (max-height: 700px) {
-  .hero-lead {
-    display: none;
-  }
-}
-
-@media (max-width: 359px) {
-  .hero-actions .btn {
-    font-size: 0.6875rem;
-    padding-inline: 0.35rem;
-  }
-  .hero-actions .btn-icon {
-    display: none;
   }
 }
 
